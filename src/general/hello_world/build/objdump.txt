@@ -1,0 +1,49 @@
+
+build/compiled:	file format mach-o arm64
+
+SYMBOL TABLE:
+0000000100000000 g     F __TEXT,__text __mh_execute_header
+0000000100003f58 g     F __TEXT,__text _main
+0000000000000000         *UND* _printf
+Contents of section __TEXT,__text:
+ 100003f58 ff8300d1 fd7b01a9 fd430091 08008052  .....{...C.....R
+ 100003f68 e80b00b9 bfc31fb8 00000090 00603e91  .............`>.
+ 100003f78 05000094 e00b40b9 fd7b41a9 ff830091  ......@..{A.....
+ 100003f88 c0035fd6                             .._.
+Contents of section __TEXT,__stubs:
+ 100003f8c 100000b0 100240f9 00021fd6           ......@.....
+Contents of section __TEXT,__cstring:
+ 100003f98 48656c6c 6f20576f 726c6421 0a00      Hello World!..
+Contents of section __TEXT,__unwind_info:
+ 100003fa8 01000000 1c000000 00000000 1c000000  ................
+ 100003fb8 00000000 1c000000 02000000 583f0000  ............X?..
+ 100003fc8 40000000 40000000 8c3f0000 00000000  @...@....?......
+ 100003fd8 40000000 00000000 00000000 00000000  @...............
+ 100003fe8 03000000 0c000100 10000100 00000000  ................
+ 100003ff8 00000004 00000000                    ........
+Contents of section __DATA_CONST,__got:
+ 100004000 00000000 00000080                    ........
+
+Disassembly of section __TEXT,__text:
+
+0000000100003f58 <_main>:
+100003f58: d10083ff    	sub	sp, sp, #32
+100003f5c: a9017bfd    	stp	x29, x30, [sp, #16]
+100003f60: 910043fd    	add	x29, sp, #16
+100003f64: 52800008    	mov	w8, #0
+100003f68: b9000be8    	str	w8, [sp, #8]
+100003f6c: b81fc3bf    	stur	wzr, [x29, #-4]
+100003f70: 90000000    	adrp	x0, 0x100003000 <_main+0x18>
+100003f74: 913e6000    	add	x0, x0, #3992
+100003f78: 94000005    	bl	0x100003f8c <_printf+0x100003f8c>
+100003f7c: b9400be0    	ldr	w0, [sp, #8]
+100003f80: a9417bfd    	ldp	x29, x30, [sp, #16]
+100003f84: 910083ff    	add	sp, sp, #32
+100003f88: d65f03c0    	ret
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100003f8c <__stubs>:
+100003f8c: b0000010    	adrp	x16, 0x100004000 <__stubs+0x4>
+100003f90: f9400210    	ldr	x16, [x16]
+100003f94: d61f0200    	br	x16
