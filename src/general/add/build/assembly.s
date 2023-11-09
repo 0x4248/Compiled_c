@@ -1,24 +1,44 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 13, 0	sdk_version 14, 0
-	.globl	_main                           ; -- Begin function main
-	.p2align	2
-_main:                                  ; @main
+	.file	"main.c"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
 	.cfi_startproc
-; %bb.0:
-	sub	sp, sp, #16
+	endbr64
+	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	mov	w0, #0
-	str	wzr, [sp, #12]
-	mov	w8, #2
-	str	w8, [sp, #8]
-	mov	w8, #3
-	str	w8, [sp, #4]
-	ldr	w8, [sp, #8]
-	ldr	w9, [sp, #4]
-	sdiv	w8, w8, w9
-	str	w8, [sp]
-	add	sp, sp, #16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	$2, -12(%rbp)
+	movl	$3, -8(%rbp)
+	movl	-12(%rbp), %eax
+	cltd
+	idivl	-8(%rbp)
+	movl	%eax, -4(%rbp)
+	movl	$0, %eax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-                                        ; -- End function
-.subsections_via_symbols
+.LFE0:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 13.2.0-4ubuntu3) 13.2.0"
+	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align 8
+	.long	1f - 0f
+	.long	4f - 1f
+	.long	5
+0:
+	.string	"GNU"
+1:
+	.align 8
+	.long	0xc0000002
+	.long	3f - 2f
+2:
+	.long	0x3
+3:
+	.align 8
+4:

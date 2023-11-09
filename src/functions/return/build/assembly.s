@@ -1,34 +1,58 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 13, 0	sdk_version 14, 0
-	.globl	_function                       ; -- Begin function function
-	.p2align	2
-_function:                              ; @function
+	.file	"main.c"
+	.text
+	.globl	function
+	.type	function, @function
+function:
+.LFB0:
 	.cfi_startproc
-; %bb.0:
-	mov	w0, #0
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	$0, %eax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-                                        ; -- End function
-	.globl	_main                           ; -- Begin function main
-	.p2align	2
-_main:                                  ; @main
+.LFE0:
+	.size	function, .-function
+	.globl	main
+	.type	main, @function
+main:
+.LFB1:
 	.cfi_startproc
-; %bb.0:
-	sub	sp, sp, #32
-	.cfi_def_cfa_offset 32
-	stp	x29, x30, [sp, #16]             ; 16-byte Folded Spill
-	add	x29, sp, #16
-	.cfi_def_cfa w29, 16
-	.cfi_offset w30, -8
-	.cfi_offset w29, -16
-	mov	w8, #0
-	str	w8, [sp, #8]                    ; 4-byte Folded Spill
-	stur	wzr, [x29, #-4]
-	bl	_function
-	ldr	w0, [sp, #8]                    ; 4-byte Folded Reload
-	ldp	x29, x30, [sp, #16]             ; 16-byte Folded Reload
-	add	sp, sp, #32
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	$0, %eax
+	call	function
+	movl	$0, %eax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-                                        ; -- End function
-.subsections_via_symbols
+.LFE1:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 13.2.0-4ubuntu3) 13.2.0"
+	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align 8
+	.long	1f - 0f
+	.long	4f - 1f
+	.long	5
+0:
+	.string	"GNU"
+1:
+	.align 8
+	.long	0xc0000002
+	.long	3f - 2f
+2:
+	.long	0x3
+3:
+	.align 8
+4:

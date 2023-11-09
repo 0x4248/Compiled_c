@@ -1,35 +1,51 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 13, 0	sdk_version 14, 0
-	.globl	_main                           ; -- Begin function main
-	.p2align	2
-_main:                                  ; @main
+	.file	"main.c"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
 	.cfi_startproc
-; %bb.0:
-	sub	sp, sp, #32
-	.cfi_def_cfa_offset 32
-	mov	w0, #0
-	str	wzr, [sp, #28]
-	adrp	x8, l___const.main.x@PAGE
-	add	x8, x8, l___const.main.x@PAGEOFF
-	ldr	w9, [x8]
-	str	w9, [sp, #20]
-	ldrh	w8, [x8, #4]
-	strh	w8, [sp, #24]
-	adrp	x8, l___const.main.y@PAGE
-	add	x8, x8, l___const.main.y@PAGEOFF
-	ldr	w9, [x8]
-	str	w9, [sp, #12]
-	ldrh	w8, [x8, #4]
-	strh	w8, [sp, #16]
-	add	sp, sp, #32
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	xorl	%eax, %eax
+	movl	$1819043144, -20(%rbp)
+	movw	$111, -16(%rbp)
+	movl	$1819438935, -14(%rbp)
+	movw	$100, -10(%rbp)
+	movl	$0, %eax
+	movq	-8(%rbp), %rdx
+	subq	%fs:40, %rdx
+	je	.L3
+	call	__stack_chk_fail@PLT
+.L3:
+	leave
+	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-                                        ; -- End function
-	.section	__TEXT,__cstring,cstring_literals
-l___const.main.x:                       ; @__const.main.x
-	.asciz	"Hello"
-
-l___const.main.y:                       ; @__const.main.y
-	.asciz	"World"
-
-.subsections_via_symbols
+.LFE0:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 13.2.0-4ubuntu3) 13.2.0"
+	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align 8
+	.long	1f - 0f
+	.long	4f - 1f
+	.long	5
+0:
+	.string	"GNU"
+1:
+	.align 8
+	.long	0xc0000002
+	.long	3f - 2f
+2:
+	.long	0x3
+3:
+	.align 8
+4:
