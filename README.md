@@ -1,6 +1,6 @@
 # Compiled C
 
-A collection of C programs that are compiled to assembly code for understanding how C and assembly work.
+A collection of C programs that are compiled to x86_64 ssembly code for understanding how C and assembly work.
 
 ## Licence
 
